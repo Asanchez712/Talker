@@ -28,7 +28,7 @@ services:
     links:
       - database
     environment:
-      PMA_HOST: 127.0.0.1
+      PMA_HOST: database
       PMA_PORT: 3306
 volumes:
   database:
