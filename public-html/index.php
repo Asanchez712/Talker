@@ -19,7 +19,7 @@
 
 	<div class="row">
 		<div class="col-6">
-			<form name="formSignUp" action="signup.ctrl.php" mehtod="post" >
+			<form name="formSignUp" action="signup.ctrl.php" method="post" >
 				<div class="form-group">
 					<label for="formSignUpEmail">Email address</label>
 					<input type="email" class="form-control" id="formSignUpEmail" 
