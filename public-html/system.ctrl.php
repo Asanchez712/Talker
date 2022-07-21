@@ -21,6 +21,12 @@ function phpShowFeedback($feedback_id) {
 		$feedback_text="Passwords don't match";
 		break;
 
+		case "804":
+			$feedback_type="danger";
+			$feedback_text="The email is already in use!";
+			break;
+	
+
 		case "811":
 		$feedback_type="success";
 		$feedback_text="You have been sucessfully signed up!";
@@ -43,4 +49,14 @@ function phpModifyDB($db_query, $db_data) {
 	$statement->execute($db_data);
 }
 
+// Get the information from the database
+function phpFetchDB($db_query, $db_data) {
+	global $connection;
+
+	$statement = $connection->prepare($db_query);
+	$statement->execute($db_data);
+
+	//setting the fetch mode and returning the result
+	return $statement->fetch(PDO::FETCH_ASSOC);
+}
 ?>
