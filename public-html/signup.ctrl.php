@@ -1,8 +1,8 @@
 <?php
 
-echo $_POST["formSignUpEmail"]; echo '<br>';
-echo $_POST["formSignUpPassword"]; echo '<br>';
-echo $_POST["formSignUpPasswordConf"]; echo '<br>';
+// echo $_POST["formSignUpEmail"]; echo '<br>';
+// echo $_POST["formSignUpPassword"]; echo '<br>';
+// echo $_POST["formSignUpPasswordConf"]; echo '<br>';
 
 $user_email= $_POST["formSignUpEmail"];
 $user_password= $_POST["formSignUpPassword"];
@@ -15,7 +15,7 @@ $email_validation = preg_match($user_email_pattern, $user_email);
 $password_validation = preg_match($user_password_pattern, $user_password);
 
 if ($email_validation && $password_validation && $user_password == $_POST["formSignUpPasswordConf"]) {
-  echo "Everything is valid, we can store the record to the database";
+    header('Location: index.php?msgid=811');
 } else if ($user_password !== $user_password_confirmation){
   echo "Passwords don't match";
 } else if (!$email_validation) {

@@ -17,6 +17,14 @@
 
 	<hr><br>
 
+  <?php if ($_GET["msgid"]!="") { ?>
+	  <div class="row">
+      <div class="col-12">
+        <div class="alert alert-success" role="alert">Everything is valid, we can store the record to the database</div>
+      </div>
+    </div>
+  <?php } ?>
+
 	<div class="row">
 		<div class="col-6">
 			<form name="formSignUp" action="signup.ctrl.php" method="post" >
