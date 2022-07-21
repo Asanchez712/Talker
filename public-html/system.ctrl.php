@@ -1,5 +1,7 @@
 <?php
 
+require ("db-conn.inc.php");
+
 // Place directly inside Bootstrap container to keep the right structure of Bootstrap document
 function phpShowFeedback($feedback_id) {
 
@@ -21,7 +23,7 @@ function phpShowFeedback($feedback_id) {
 
 		case "811":
 		$feedback_type="success";
-		$feedback_text="Everything is valid, we can store the record to the database";
+		$feedback_text="You have been sucessfully signed up!";
 		break;
 
 		default:
@@ -31,6 +33,14 @@ function phpShowFeedback($feedback_id) {
     }
 
 	return '<div class="row"><div class="col-12"><div class="alert alert-' . $feedback_type . '" role="alert">' . $feedback_text . '</div></div></div>';
+}
+
+// Create, update or delete a record in the database
+function phpModifyDB($db_query, $db_data) {
+	global $connection;
+
+	$statement = $connection->prepare($db_query);
+	$statement->execute($db_data);
 }
 
 ?>

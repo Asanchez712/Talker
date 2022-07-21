@@ -1,5 +1,6 @@
 <?php
 
+require("system.ctrl.php");
 session_start();
 
 // echo $_POST["formSignUpEmail"]; echo '<br>';
@@ -17,6 +18,8 @@ $email_validation = preg_match($user_email_pattern, $user_email);
 $password_validation = preg_match($user_password_pattern, $user_password);
 
 if ($email_validation && $password_validation && $user_password == $_POST["formSignUpPasswordConf"]) {
+    $db_data = array($user_email, $user_password);
+    phpModifyDB('INSERT INTO users (user_email, user_password) values (?,?)',$db_data);
     $_SESSION["msgid"] = "811";
     header('Location: index.php');
 } else if (!$email_validation) {
