@@ -5,6 +5,8 @@ define('DOCKER', array(
     '123'
 ));
 
+define('SMTP_PSWD','uqvijvpmdfpwwpcf')
+
 
 
 ?>

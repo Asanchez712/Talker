@@ -1,5 +1,7 @@
 <?php session_start(); require('system.ctrl.php');?>
 
+<?php phpSendEmail("asanchez72022@gmail.com","Hello there!","This is a test email.");?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
