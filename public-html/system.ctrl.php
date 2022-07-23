@@ -19,11 +19,11 @@ function phpShowFeedback($feedback_id) {
 			$feedback_text="This is not a valid email address";
 			break;
 			
-			case "802":
-			$feedback_type="danger";
-			$feedback_text="Password must be between 8 and 16 characters long, with at least one uppercase and lowercase character, one number and one special character (@, *, $ or #).";
-			break;
-			
+		case "802":
+		$feedback_type="danger";
+		$feedback_text="Password must be between 8 and 16 characters long, with at least one uppercase and lowercase character, one number and one special character (@, *, $ or #).";
+		break;
+		
 		case "803":
 		$feedback_type="danger";
 		$feedback_text="Passwords don't match";
@@ -33,11 +33,27 @@ function phpShowFeedback($feedback_id) {
 			$feedback_type="danger";
 			$feedback_text="The email is already in use!";
 			break;
+
+		case "805":
+			$feedback_type="danger";
+			$feedback_text="The email is not registered!";
+			break;
+
+		case "806":
+			$feedback_type="danger";
+			$feedback_text="Your account has already been activated!";
+			break;
+
+		case "807":
+			$feedback_type="danger";
+			$feedback_text="Verification link is corrupted!";
+			break;
+	
 	
 
 		case "811":
 		$feedback_type="success";
-		$feedback_text="You have been sucessfully signed up!";
+		$feedback_text="Your account has been activated you can sign in!";
 		break;
 
 		case "812":

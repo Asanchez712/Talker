@@ -15,7 +15,4 @@ require 'db-pswd.inc.php';
      die();
  }
 
- 
-
-
 ?>
