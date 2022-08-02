@@ -16,17 +16,25 @@
   <body>
   <div class="container">
 	<div class="row justify-content-md-center">
-		<div class="col-12 col-md-auto"><h1>TALKER | SIGN UP</h1></div>
+		<div style="margin-top: 80px" class="col-12 col-md-auto"><h1>TALKER | SIGN UP</h1></div>
 	</div>
 
 	<hr><br>
 
-  <?php
-    if(isset($_SESSION["msgid"])&& $_SESSION["msgid"]!=""){
-      echo (phpShowFeedback($_SESSION["msgid"]));
-      $_SESSION["msgid"]="";
-    }
-  ?>
+  <!-- SYSTEM-WIDE FEEDBACK -->
+<?php if (isset($_SESSION["msgid"]) && $_SESSION["msgid"]!="" && phpShowSystemFeedBack($_SESSION["msgid"])[0]!="") { ?>
+
+<div class="row">
+  <div class="col-12">
+    <div class="alert alert-<?php echo (phpShowSystemFeedBack($_SESSION['msgid'])[0]); ?>" role="alert">
+      <?php echo (phpShowSystemFeedBack($_SESSION['msgid'])[1]); ?>
+    </div>
+  </div>
+</div>
+
+<?php } ?>
+<!-- SYSTEM-WIDE FEEDBACK -->
+
 
 
 	<div class="row">
@@ -34,17 +42,31 @@
 			<form name="formSignUp" action="signup.ctrl.php" method="post" novalidate >
 				<div class="form-group">
 					<label for="formSignUpEmail">Email address</label>
-					<input type="email" class="form-control" id="formSignUpEmail" 
+					<input type="email" <?php echo (phpShowEmailInputValue($_SESSION["formSignUpEmail"]));?> 
+          class="form-control <?php if($_SESSION["msgid"]!= "801" && $_SESSION["msgid"]!=""){echo 'is-valid';}
+          else { echo (phpShowInputFeedback($_SESSION['msgid'])[0]); } ?> " 
+          id="formSignUpEmail" 
           name="formSignUpEmail"
           placeholder="Enter your email address" 
           required pattern='^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})'>
-				</div>
+          <?php if ($_SESSION["msgid"]== "801"){ ?>
+            <div class="invalid-feedback">
+             <?php echo (phpShowInputFeedback($_SESSION['msgid'])[1]);?>				    
+            </div> 
+          <?php } ?>  
+        </div> 
 				<div class="form-group">
 					<label for="formSignUpPassword">Password</label>
-					<input type="password" class="form-control" id="formSignUpPassword" 
+					<input type="password" class="form-control <?php echo (phpShowInputFeedback($_SESSION['msgid'])[0]);?>" id="formSignUpPassword" 
           name="formSignUpPassword"
           placeholder="Enter your password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@*$#]).{8,16}"
           onkeyup="jsSignUpValidatePassword()">
+          <?php if ($_SESSION["msgid"]== "802"){ ?>
+            <div class="invalid-feedback">
+             <?php echo (phpShowInputFeedback($_SESSION['msgid'])[1]);?>				    
+            </div> 
+          <?php } ?>  
+
 
 					<input type="password" class="form-control mt-4" id="formSignUpPasswordConf" 
           name="formSignUpPasswordConf"
@@ -52,8 +74,8 @@
           onkeyup="jsSignUpValidatePassword()">
 
 				</div>
-        <p id='password_comparison'></p>
-				<button style='margin-top:20px' type="submit" class="btn btn-primary">Submit</button>
+        <p id='password_comparison' style='margin-top:20px'></p>
+				<button style='margin-top:20px' type="submit" class="btn btn-primary btn-success">Sign Up</button>
 			</form>
 		</div>
 
@@ -66,6 +88,9 @@
 		</div>
 	</div>
 </div>
+
+          <?php $_SESSION["msgid"]=""; $_SESSION["formSignUpEmail"] = ""; ?>
+
 
 <script>
       var jsSignUpPassword = document.getElementById("formSignUpPassword");
